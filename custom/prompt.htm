@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Copy/Paste a jellynote music score URL</title>
+	<style>
+		form {
+			font-size: 1.1em;
+			line-height: 1.65em;
+		}
+
+		form input {
+			font-size: 1.1em;
+		}
+
+		input[type=submit] {
+			float: right;
+			margin-top: 1em;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="mceTmpl">
+	<p>Please write the URL of the music score you wish to insert (eg. http://www.jellynote.com/sheet-music-tabs/rolfe-kent/dexter-main-title/5062d631d2235a7a2621a471)</p>
+	<form method="POST" action="/">
+		<label for="url">Music score URL</label> : 
+		<input type="text" name="url" id="url" value="" size="34" /><br />
+		<input type="submit">
+	</form>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="tiny_mce_popup.js"></script>
+<script type="text/javascript">
+	$('input[type=submit]').click(function(e) {
+		var url = $('input[name=url]').val();
+		if(url) {
+			tinyMCEPopup.execCommand('mceInsertContent', false, 
+				'[jellynote url="'+url+'"]');
+			tinyMCEPopup.close();
+		}
+		e.preventDefault();
+	});
+</script>
+</body>
